@@ -10,7 +10,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "gen": "tsc && node lib/index.js"
   },
   "dependencies": {
     "emojilib": "^3.0.10",

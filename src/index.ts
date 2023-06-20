@@ -10,6 +10,7 @@ import {
 } from "./generators";
 
 const keywordData: { [key: string]: string[] } = _keywordData;
+const path = "./export/emoji.dart";
 
 function exportToDart(): void {
   const emojis: GenericObject = {};
@@ -49,13 +50,19 @@ function exportToDart(): void {
   }
 
   writeFile(
-    "./export/emoji.dart",
+    path,
     `${generateEmojiGroupEnum(groups)}
     
 ${generateEmojiClass(fields)}
     
 ${generateEmojiList(fields, emojis)}`,
-    () => {}
+    (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(`✅ Dart file created successfully: ${path}`);
+      }
+    }
   );
   return;
 }
