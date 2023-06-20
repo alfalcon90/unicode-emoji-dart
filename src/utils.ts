@@ -1,26 +1,28 @@
+import { DartType } from "./types";
+
 export function toCamelCase(str: string) {
   return str
     .toLowerCase()
     .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 }
 
-export function toDartType(key: string, value: any): string {
+export function toDartType(key: string, value: any): DartType {
   switch (typeof value) {
     case "string":
       if (key === "group") {
-        return "EmojiGroup";
+        return DartType.emojiGroup;
       } else if (isNaN(Number(value))) {
-        return "String";
+        return DartType.string;
       } else {
-        return "double";
+        return DartType.double;
       }
     case "boolean":
-      return "bool";
+      return DartType.bool;
     case "number":
-      return "double";
+      return DartType.double;
     case "object": {
       if (Array.isArray(value)) {
-        return "List<String>";
+        return DartType.list;
       } else {
         console.log(value);
         throw Error(`Unsupported type of ${typeof value}`);

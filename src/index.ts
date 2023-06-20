@@ -2,32 +2,45 @@ import { writeFile } from "fs";
 import _keywordData from "emojilib";
 import emojiData from "unicode-emoji-json";
 import { toDartType, toCamelCase } from "./utils";
-import { Fields } from "./types";
-import { generateEmojiClass, generateEmojiGroupEnum } from "./generators";
+import { DartType, Fields, GenericObject } from "./types";
+import {
+  generateEmojiClass,
+  generateEmojiGroupEnum,
+  generateEmojiList,
+} from "./generators";
 
 const keywordData: { [key: string]: string[] } = _keywordData;
 
 function exportToDart(): void {
-  const emojis: { [key: string]: any } = {};
+  const emojis: GenericObject = {};
   const fields: Fields = {
-    char: { formattedName: "char", dartType: "String" },
+    char: {
+      formattedName: "char",
+      dartType: DartType.string,
+      required: true,
+    },
+    keywords: {
+      formattedName: "keywords",
+      dartType: DartType.list,
+      required: true,
+    },
   };
   const groups: string[] = [];
 
   for (const [emoji, data] of Object.entries(emojiData)) {
-    // Merge keywords with emoji data
-    const keywords: undefined | string[] = keywordData[emoji];
-
-    // Filters out other data that is not keywords
-    if (Array.isArray(keywords)) {
-      emojis[emoji] = { ...data, keywords: keywords };
-    }
+    // Merge keywords with emoji data and add char field
+    emojis[emoji] = { ...data, keywords: keywordData[emoji], char: emoji };
 
     // Transform emoji data to Dart class fields
     for (const [k, v] of Object.entries(data)) {
+      const required = Object.entries(emojiData).every(
+        ([_, data]) => (data as GenericObject)[k] != undefined
+      );
+
       fields[k] = {
         formattedName: toCamelCase(k),
         dartType: toDartType(k, v),
+        required: required,
       };
     }
 
@@ -37,7 +50,11 @@ function exportToDart(): void {
 
   writeFile(
     "./export/emoji.dart",
-    `${generateEmojiGroupEnum(groups)}\n\n${generateEmojiClass(fields)}`,
+    `${generateEmojiGroupEnum(groups)}
+    
+${generateEmojiClass(fields)}
+    
+${generateEmojiList(fields, emojis)}`,
     () => {}
   );
   return;
