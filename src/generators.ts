@@ -7,7 +7,10 @@ export function generateEmojiRegex(): string {
 
   return `final regex = RegExp(
   r"${regex.source}",
-  unicode: true,
+  unicode: ${regex.unicode},
+  multiLine: ${regex.multiline},
+  caseSensitive: ${!regex.ignoreCase},
+  dotAll: ${regex.dotAll},
 );`;
 }
 
