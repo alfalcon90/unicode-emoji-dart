@@ -7,6 +7,7 @@ import {
   generateEmojiClass,
   generateEmojiGroupEnum,
   generateEmojiList,
+  generateEmojiRegex,
 } from "./generators";
 
 const keywordData: { [key: string]: string[] } = _keywordData;
@@ -51,7 +52,9 @@ function exportToDart(): void {
 
   writeFile(
     path,
-    `${generateEmojiGroupEnum(groups)}
+    `${generateEmojiRegex()}
+
+${generateEmojiGroupEnum(groups)}
     
 ${generateEmojiClass(fields)}
     

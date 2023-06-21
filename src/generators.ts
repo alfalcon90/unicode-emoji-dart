@@ -1,5 +1,15 @@
 import { DartType, Fields, GenericObject } from "./types";
 import { toCamelCase } from "./utils";
+import emojiRegex from "emoji-regex";
+
+export function generateEmojiRegex(): string {
+  const regex = emojiRegex();
+
+  return `final regex = RegExp(
+  r"${regex.source}",
+  unicode: true,
+);`;
+}
 
 export function generateEmojiClass(fields: Fields): string {
   var fieldStr = "";
@@ -55,7 +65,7 @@ export function generateEmojiInstance(
     str += `    ${field.formattedName}: ${value},\n`;
   }
 
-  return `Emoji(
+  return `"${data["char"]}": Emoji(
 ${str}  )`;
 }
 
@@ -69,7 +79,7 @@ export function generateEmojiList(
     str += `  ${generateEmojiInstance(fields, value)},\n`;
   }
 
-  return `final emojis = [
+  return `final emojis = {
 ${str}
-  ];`;
+  };`;
 }
