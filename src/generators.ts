@@ -31,6 +31,15 @@ export function generateEmojiClass(fields: Fields): string {
 ${fieldStr}
   Emoji({
 ${constructorStr}  });
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Emoji && other.char == char;
+  }
+
+  @override
+  int get hashCode => char.hashCode;
 }`;
 }
 
