@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
     "watch": "tsc -w",
-    "gen": "tsc && node lib/index.js"
+    "generate": "tsc && node lib/index.js"
   },
   "dependencies": {
     "emoji-regex": "^10.2.1",
