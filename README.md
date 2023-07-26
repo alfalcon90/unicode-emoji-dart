@@ -8,13 +8,17 @@ This library takes the latest available emoji dataset ([v15.1](https://www.unico
 
 ## Generate Dart files
 
-1. `npm install`
+1. `npm add unicode-emoji-dart`
 
-  Install dependencies.
+Add this package.
 
-2. `npm run generate`
+2. `npm add -D @types/node typescript`
 
-  Check the`/export` folder once the script is done.
+Add Typescript devDependencies if not done already.
+
+3. `npm explore unicode-emoji-dart -- npm run generate`
+
+Check the`/export` folder once the script is done.
 
 ## Usage
 
