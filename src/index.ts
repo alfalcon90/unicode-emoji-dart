@@ -1,4 +1,4 @@
-import { writeFile } from "fs";
+import { existsSync, mkdirSync, writeFile } from "fs";
 import _keywordData from "emojilib";
 import emojiData from "unicode-emoji-json";
 import { toDartType, toCamelCase } from "./utils";
@@ -11,7 +11,8 @@ import {
 } from "./generators";
 
 const keywordData: { [key: string]: string[] } = _keywordData;
-const path = "./export/emoji.dart";
+const dir = "./export";
+const path = `${dir}/emoji.dart`;
 
 function exportToDart(): void {
   const emojis: GenericObject = {};
@@ -50,6 +51,12 @@ function exportToDart(): void {
     if (groups.indexOf(data.group) === -1) groups.push(data.group);
   }
 
+  // Create export dir if not done already
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
+
+  // Create dart file
   writeFile(
     path,
     `${generateEmojiRegex()}
@@ -67,6 +74,7 @@ ${generateEmojiList(fields, emojis)}`,
       }
     }
   );
+
   return;
 }
 
