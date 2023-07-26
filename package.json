@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/alfalcon90/unicode-emoji-dart.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "license": "MIT",
