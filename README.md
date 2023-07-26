@@ -10,31 +10,19 @@ This library takes the latest available emoji dataset ([v15.1](https://www.unico
 
 ### As repo clone
 
-1. `git clone https://github.com/alfalcon90/unicode-emoji-dart.git`
+1. `git clone https://github.com/alfalcon90/unicode-emoji-dart.git` Clone this repo.
 
-Clone this repo.
+2. `npm install` Install dependencies.
 
-2. `npm install`
-
-Install dependencies.
-
-3. `npm run generate`
-
-Check the`/export` folder once the script is done.
+3. `npm run generate` Check the`/export` folder once the script is done.
 
 ### As npm dependency
 
-1. `npm add unicode-emoji-dart`
+1. `npm add unicode-emoji-dart` Add this package.
 
-Add this package.
+2. `npm add -D @types/node typescript` Add Typescript devDependencies if not done already.
 
-2. `npm add -D @types/node typescript`
-
-Add Typescript devDependencies if not done already.
-
-3. `npm explore unicode-emoji-dart -- npm run generate`
-
-Check the`node_modules/unicode-emoji-dart/export` folder once the script is done.
+3. `npm explore unicode-emoji-dart -- npm run generate` Check the`node_modules/unicode-emoji-dart/export` folder once the script is done.
 
 ## Usage
 
