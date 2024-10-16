@@ -1,6 +1,6 @@
 # Unicode Emoji Dart
 
-This library takes the latest available emoji dataset ([v15.1](https://www.unicode.org/reports/tr51/proposed.html#emoji_data)) from Unicode and generates Dart objects from it. It uses the following libraries to compile the dataset:
+This library takes the latest available emoji dataset ([v16](https://www.unicode.org/reports/tr51/)) from Unicode and generates Dart objects from it. It uses the following libraries to compile the dataset:
 
 - [`emojilib`](https://github.com/muan/emojilib): provides a list of keywords for every emoji
 - [`unicode-emoji-json`](https://github.com/muan/unicode-emoji-json): provides emoji data in JSON format

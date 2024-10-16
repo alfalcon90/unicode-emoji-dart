@@ -15,9 +15,9 @@
     "generate": "tsc && node lib/index.js"
   },
   "dependencies": {
-    "emoji-regex": "^10.2.1",
-    "emojilib": "^3.0.10",
-    "unicode-emoji-json": "^0.4.0"
+    "emoji-regex": "^10.4.0",
+    "emojilib": "^4.0.0",
+    "unicode-emoji-json": "^0.8.0"
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
