@@ -62,13 +62,13 @@ export function generateEmojiInstance(
 
     switch (field.dartType) {
       case DartType.string:
-        value = `"${value}"`;
+        value = `'${value}'`;
         break;
       case DartType.emojiGroup:
         value = `${DartType.emojiGroup}.${toCamelCase(value)}`;
         break;
       case DartType.list:
-        value = `[${(value as string[]).map((v) => `"${v}"`)}]`;
+        value = `[${(value as string[]).map((v) => `'${v}'`)}]`;
         break;
     }
 
@@ -77,7 +77,7 @@ export function generateEmojiInstance(
     str += `    ${field.formattedName}: ${value},\n`;
   }
 
-  return `"${data["char"]}": Emoji(
+  return `'${data["char"]}': Emoji(
 ${str}  )`;
 }
 
